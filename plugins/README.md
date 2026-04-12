@@ -23,12 +23,14 @@ claude plugin marketplace add https://github.com/affaan-m/everything-claude-code
 
 ### Recommended Marketplaces
 
-| Marketplace | Source |
-|-------------|--------|
-| claude-plugins-official | `anthropics/claude-plugins-official` |
-| claude-code-plugins | `anthropics/claude-code` |
-| Mixedbread-Grep (@mixedbread-ai) | `mixedbread-ai/mgrep` |
-| Everything Claude Code | `affaan-m/everything-claude-code` |
+> **Note:** Community marketplaces (marked below) are third-party sources not maintained or endorsed by this project. Review their contents before installation.
+
+| Marketplace | Source | Type |
+|-------------|--------|------|
+| claude-plugins-official | `anthropics/claude-plugins-official` | Official |
+| claude-code-plugins | `anthropics/claude-code` | Official |
+| Mixedbread-Grep (@mixedbread-ai) | `mixedbread-ai/mgrep` | Community |
+| Everything Claude Code | `affaan-m/everything-claude-code` | Community |
 
 ---
 
