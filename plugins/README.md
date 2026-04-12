@@ -18,7 +18,7 @@ claude plugin marketplace add https://github.com/anthropics/claude-plugins-offic
 claude plugin marketplace add https://github.com/mixedbread-ai/mgrep
 
 # Add Everything Claude Code marketplace
-claude plugin marketplace add affaan-m/everything-claude-code
+claude plugin marketplace add https://github.com/affaan-m/everything-claude-code
 ```
 
 ### Recommended Marketplaces
@@ -63,7 +63,7 @@ claude plugin install typescript-lsp@claude-plugins-official
 - `commit-commands` - Git workflow
 - `frontend-design` - UI patterns
 - `feature-dev` - Feature development
-- `everything-claude-code` - 25 agents, 108 skills, 57 commands, and production-ready hooks
+- `everything-claude-code` - agents, skills, commands, and production-ready hooks (see [repo](https://github.com/affaan-m/everything-claude-code) for current counts)
 
 ---
 
@@ -75,7 +75,7 @@ claude plugin marketplace add https://github.com/anthropics/claude-plugins-offic
 claude plugin marketplace add https://github.com/mixedbread-ai/mgrep
 
 # Add Everything Claude Code marketplace
-claude plugin marketplace add affaan-m/everything-claude-code
+claude plugin marketplace add https://github.com/affaan-m/everything-claude-code
 
 # Install Everything Claude Code plugin
 claude plugin install everything-claude-code@everything-claude-code
