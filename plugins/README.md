@@ -16,15 +16,21 @@ claude plugin marketplace add https://github.com/anthropics/claude-plugins-offic
 
 # Add community marketplaces (mgrep by @mixedbread-ai)
 claude plugin marketplace add https://github.com/mixedbread-ai/mgrep
+
+# Add Everything Claude Code marketplace
+claude plugin marketplace add https://github.com/affaan-m/everything-claude-code
 ```
 
 ### Recommended Marketplaces
 
-| Marketplace | Source |
-|-------------|--------|
-| claude-plugins-official | `anthropics/claude-plugins-official` |
-| claude-code-plugins | `anthropics/claude-code` |
-| Mixedbread-Grep (@mixedbread-ai) | `mixedbread-ai/mgrep` |
+> **Note:** Community marketplaces (marked below) are third-party sources not maintained or endorsed by this project. Review their contents before installation.
+
+| Marketplace | Source | Type |
+|-------------|--------|------|
+| claude-plugins-official | `anthropics/claude-plugins-official` | Official |
+| claude-code-plugins | `anthropics/claude-code` | Official |
+| Mixedbread-Grep (@mixedbread-ai) | `mixedbread-ai/mgrep` | Community |
+| Everything Claude Code | `affaan-m/everything-claude-code` | Community |
 
 ---
 
@@ -59,6 +65,7 @@ claude plugin install typescript-lsp@claude-plugins-official
 - `commit-commands` - Git workflow
 - `frontend-design` - UI patterns
 - `feature-dev` - Feature development
+- `everything-claude-code` - agents, skills, commands, and production-ready hooks (see [repo](https://github.com/affaan-m/everything-claude-code) for current counts)
 
 ---
 
@@ -68,6 +75,12 @@ claude plugin install typescript-lsp@claude-plugins-official
 # Add marketplaces
 claude plugin marketplace add https://github.com/anthropics/claude-plugins-official
 claude plugin marketplace add https://github.com/mixedbread-ai/mgrep
+
+# Add Everything Claude Code marketplace
+claude plugin marketplace add https://github.com/affaan-m/everything-claude-code
+
+# Install Everything Claude Code plugin
+claude plugin install everything-claude-code@everything-claude-code
 
 # Open /plugins and install what you need
 ```
