@@ -65,6 +65,7 @@ claude plugin install typescript-lsp@claude-plugins-official
 - `commit-commands` - Git workflow
 - `frontend-design` - UI patterns
 - `feature-dev` - Feature development
+- `superpowers` - enhanced agent capabilities and advanced tools
 - `everything-claude-code` - agents, skills, commands, and production-ready hooks (see [repo](https://github.com/affaan-m/everything-claude-code) for current counts)
 
 ---
@@ -81,6 +82,9 @@ claude plugin marketplace add https://github.com/affaan-m/everything-claude-code
 
 # Install Everything Claude Code plugin
 claude plugin install everything-claude-code@everything-claude-code
+
+# Install superpowers plugin
+claude plugin install superpowers@claude-plugins-official
 
 # Open /plugins and install what you need
 ```
