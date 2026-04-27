@@ -250,6 +250,14 @@
       "modules": [
         "document-processing"
       ]
+    },
+    {
+      "id": "capability:frontend-design",
+      "family": "capability",
+      "description": "Visual UI design patterns for design systems, tokens, CSS/Tailwind, responsive layout, dark mode, and visual hierarchy. Sourced from claude-plugins-official.",
+      "modules": [
+        "frontend-design"
+      ]
     }
   ]
 }

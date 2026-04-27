@@ -155,6 +155,27 @@
       "stability": "stable"
     },
     {
+      "id": "frontend-design",
+      "kind": "skills",
+      "description": "Visual UI design patterns: design tokens, CSS/Tailwind, dark mode, responsive layout, and visual hierarchy. Sourced from claude-plugins-official.",
+      "paths": [
+        "skills/frontend-design"
+      ],
+      "targets": [
+        "claude",
+        "cursor",
+        "antigravity",
+        "codex",
+        "opencode"
+      ],
+      "dependencies": [
+        "platform-configs"
+      ],
+      "defaultInstall": false,
+      "cost": "light",
+      "stability": "stable"
+    },
+    {
       "id": "database",
       "kind": "skills",
       "description": "Database and persistence-focused skills.",
