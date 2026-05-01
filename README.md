@@ -638,6 +638,16 @@ Copy desired MCP servers from `mcp-configs/mcp-servers.json` to your `~/.claude.
 
 **Important:** Replace `YOUR_*_HERE` placeholders with your actual API keys.
 
+#### ruflo (Workflow Automation)
+
+[ruflo](https://ruflo.dev) lets Claude Code drive workflow automation directly via MCP. Run the setup script to install and register it:
+
+```bash
+bash scripts/setup-ruflo.sh
+```
+
+See [`docs/ruflo-mcp-setup.md`](docs/ruflo-mcp-setup.md) for full details.
+
 ---
 
 ## 🎯 Key Concepts
