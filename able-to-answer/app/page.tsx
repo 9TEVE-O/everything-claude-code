@@ -1,31 +1,13 @@
 import { CategoryGrid } from '@/components/CategoryGrid'
 import { VideoCard } from '@/components/VideoCard'
+import { getVideos, getCategories } from '@/lib/data'
 import { ACTIVE_TOPIC } from '@/topic.config'
 
-const BASE = process.env.NEXT_PUBLIC_APP_URL || 'http://localhost:3000'
-
-async function getRecentVideos() {
-  try {
-    const res = await fetch(`${BASE}/api/videos?limit=12`, { next: { revalidate: 3600 } })
-    if (!res.ok) return []
-    return (await res.json()).videos || []
-  } catch {
-    return []
-  }
-}
-
-async function getCategories() {
-  try {
-    const res = await fetch(`${BASE}/api/categories`, { next: { revalidate: 3600 } })
-    if (!res.ok) return []
-    return (await res.json()).categories || []
-  } catch {
-    return []
-  }
-}
-
 export default async function HomePage() {
-  const [videos, categories] = await Promise.all([getRecentVideos(), getCategories()])
+  const [{ videos }, categories] = await Promise.all([
+    getVideos({ limit: 12 }),
+    getCategories(),
+  ])
 
   return (
     <div className="space-y-12">

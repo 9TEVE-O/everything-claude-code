@@ -1,42 +1,20 @@
 import { VideoCard } from '@/components/VideoCard'
 import { SearchBar } from '@/components/SearchBar'
-
-const BASE = process.env.NEXT_PUBLIC_APP_URL || 'http://localhost:3000'
+import { getVideos, getCategories } from '@/lib/data'
 
 interface Props {
   searchParams: { q?: string; category?: string; duration?: string; page?: string }
 }
 
-async function getVideos(params: Props['searchParams']) {
-  const qs = new URLSearchParams({
-    limit: '24',
-    ...(params.q ? { q: params.q } : {}),
-    ...(params.category ? { category: params.category } : {}),
-    ...(params.duration ? { duration: params.duration } : {}),
-    ...(params.page ? { page: params.page } : {}),
-  })
-  try {
-    const res = await fetch(`${BASE}/api/videos?${qs}`, { next: { revalidate: 60 } })
-    if (!res.ok) return { videos: [], total: 0 }
-    return res.json()
-  } catch {
-    return { videos: [], total: 0 }
-  }
-}
-
-async function getCategories() {
-  try {
-    const res = await fetch(`${BASE}/api/categories`, { next: { revalidate: 3600 } })
-    if (!res.ok) return []
-    return (await res.json()).categories || []
-  } catch {
-    return []
-  }
-}
-
 export default async function BrowsePage({ searchParams }: Props) {
   const [{ videos, total }, categories] = await Promise.all([
-    getVideos(searchParams),
+    getVideos({
+      q: searchParams.q,
+      category: searchParams.category,
+      duration: searchParams.duration,
+      page: searchParams.page ? parseInt(searchParams.page) : 1,
+      limit: 24,
+    }),
     getCategories(),
   ])
 

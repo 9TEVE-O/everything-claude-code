@@ -4,18 +4,32 @@ import { searchVideos, getVideoDetails } from '@/lib/youtube'
 import { categorizeVideo } from '@/lib/categorizer'
 import { ACTIVE_TOPIC } from '@/topic.config'
 
-// Run 10 searches per day to stay well within the 10k unit quota
-const DAILY_QUERIES = ACTIVE_TOPIC.searchQueries.slice(0, 10)
+function getDailyQueries(): string[] {
+  const queries = ACTIVE_TOPIC.searchQueries
+  const batchSize = 10
+  const dayOfYear = Math.floor(
+    (Date.now() - new Date(new Date().getFullYear(), 0, 0).getTime()) / 86400000
+  )
+  const start = (dayOfYear * batchSize) % queries.length
+  const end = start + batchSize
+  return end <= queries.length
+    ? queries.slice(start, end)
+    : [...queries.slice(start), ...queries.slice(0, end - queries.length)]
+}
 
-export async function POST(req: NextRequest) {
+export async function GET(req: NextRequest) {
+  if (!process.env.CRON_SECRET) {
+    return NextResponse.json({ error: 'CRON_SECRET not configured' }, { status: 500 })
+  }
   if (req.headers.get('authorization') !== `Bearer ${process.env.CRON_SECRET}`) {
     return NextResponse.json({ error: 'Unauthorized' }, { status: 401 })
   }
 
   const supabase = createAdminClient()
+  const dailyQueries = getDailyQueries()
   let totalAdded = 0
 
-  for (const query of DAILY_QUERIES) {
+  for (const query of dailyQueries) {
     const jobId = crypto.randomUUID()
     await supabase.from('scan_jobs').insert({
       id: jobId,
@@ -92,5 +106,5 @@ export async function POST(req: NextRequest) {
     }
   }
 
-  return NextResponse.json({ added: totalAdded })
+  return NextResponse.json({ added: totalAdded, queries: dailyQueries.length })
 }

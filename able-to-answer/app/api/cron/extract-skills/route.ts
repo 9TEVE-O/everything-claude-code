@@ -4,34 +4,33 @@ import { fetchTranscript } from '@/lib/transcript'
 import { extractSkillsFromTranscript } from '@/lib/skill-extractor'
 import { ACTIVE_TOPIC } from '@/topic.config'
 
-export async function POST(req: NextRequest) {
+const BATCH_SIZE = 10
+
+export async function GET(req: NextRequest) {
+  if (!process.env.CRON_SECRET) {
+    return NextResponse.json({ error: 'CRON_SECRET not configured' }, { status: 500 })
+  }
   if (req.headers.get('authorization') !== `Bearer ${process.env.CRON_SECRET}`) {
     return NextResponse.json({ error: 'Unauthorized' }, { status: 401 })
   }
 
   const supabase = createAdminClient()
 
-  // Fetch videos not yet processed for skill extraction
-  const { data: processed } = await supabase
-    .from('extracted_skills')
-    .select('video_id')
-
-  const processedIds = [...new Set((processed || []).map(r => r.video_id))]
-
-  const videosQuery = supabase
+  const { data: videos } = await supabase
     .from('videos')
     .select('id, youtube_id, title')
-    .limit(5) // 5 per run keeps Claude API costs minimal
-
-  if (processedIds.length > 0) {
-    videosQuery.not('id', 'in', `(${processedIds.join(',')})`)
-  }
-
-  const { data: videos } = await videosQuery
+    .is('skills_attempted_at', null)
+    .limit(BATCH_SIZE)
 
   if (!videos || videos.length === 0) {
     return NextResponse.json({ message: 'No videos to process' })
   }
+
+  // Mark all as attempted immediately — prevents re-picking if transcript unavailable
+  await supabase
+    .from('videos')
+    .update({ skills_attempted_at: new Date().toISOString() })
+    .in('id', videos.map(v => v.id))
 
   let skillsExtracted = 0
   for (const video of videos) {
