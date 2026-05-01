@@ -27,6 +27,11 @@ export async function GET(req: NextRequest) {
 
   const supabase = createAdminClient()
   const dailyQueries = getDailyQueries()
+
+  // Fetch categories once — used for every video across all queries
+  const { data: categories } = await supabase.from('categories').select('id, slug')
+  const categoryMap = new Map(categories?.map(c => [c.slug, c.id]) || [])
+
   let totalAdded = 0
 
   for (const query of dailyQueries) {
@@ -42,9 +47,6 @@ export async function GET(req: NextRequest) {
       const { results } = await searchVideos(query, 25)
       const details = await getVideoDetails(results.map(r => r.youtube_id))
       const detailMap = new Map(details.map(d => [d.youtube_id, d]))
-
-      const { data: categories } = await supabase.from('categories').select('id, slug')
-      const categoryMap = new Map(categories?.map(c => [c.slug, c.id]) || [])
 
       let added = 0
       for (const result of results) {
@@ -81,7 +83,7 @@ export async function GET(req: NextRequest) {
         const allSlugs = [...cats.slugs, ...(cats.durationSlug ? [cats.durationSlug] : [])]
         const categoryRows = allSlugs
           .map(slug => categoryMap.get(slug))
-          .filter(Boolean)
+          .filter((id): id is string => id !== undefined)
           .map(categoryId => ({ video_id: upserted.id, category_id: categoryId, auto_tagged: true }))
 
         if (categoryRows.length > 0) {

@@ -1,23 +1,14 @@
 import { VideoCard } from '@/components/VideoCard'
 import { SearchBar } from '@/components/SearchBar'
-
-const BASE = process.env.NEXT_PUBLIC_APP_URL || 'http://localhost:3000'
+import { getVideos } from '@/lib/data'
 
 interface Props { searchParams: { q?: string } }
 
-async function searchVideos(q: string) {
-  try {
-    const res = await fetch(`${BASE}/api/videos?q=${encodeURIComponent(q)}&limit=48`, { cache: 'no-store' })
-    if (!res.ok) return { videos: [], total: 0 }
-    return res.json()
-  } catch {
-    return { videos: [], total: 0 }
-  }
-}
-
 export default async function SearchPage({ searchParams }: Props) {
   const q = searchParams.q || ''
-  const { videos, total } = q ? await searchVideos(q) : { videos: [], total: 0 }
+  const { videos, total } = q
+    ? await getVideos({ q, limit: 48 })
+    : { videos: [], total: 0 }
 
   return (
     <div className="space-y-6">
