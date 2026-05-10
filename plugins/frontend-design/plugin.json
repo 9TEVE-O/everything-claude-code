@@ -1,0 +1,22 @@
+{
+  "name": "frontend-design",
+  "version": "1.0.0",
+  "description": "UI design patterns for Claude Code — layout, component, typography, color, and interaction patterns for production-quality interfaces",
+  "author": {
+    "name": "Affaan Mustafa",
+    "url": "https://x.com/affaanmustafa"
+  },
+  "license": "MIT",
+  "keywords": [
+    "frontend",
+    "design",
+    "ui",
+    "patterns",
+    "layout",
+    "components",
+    "design-system",
+    "typography",
+    "color"
+  ],
+  "skills": ["./skills/"]
+}
