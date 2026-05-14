@@ -24,7 +24,7 @@ no one intended to act on.
 |---|---|
 | Max-iteration cap | "Stop after 5 search-and-refine cycles" |
 | Goal-satisfaction check | "Stop when all checklist items are marked done" |
-| Confidence threshold | "Stop when diff between iterations is < 2 % " |
+| Confidence threshold | "Stop when diff between iterations is < 2%" |
 | External signal | "Stop when CI passes" |
 | Explicit sentinel | "Stop when the agent outputs `DONE`" |
 
