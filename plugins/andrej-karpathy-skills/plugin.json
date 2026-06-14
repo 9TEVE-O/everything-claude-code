@@ -1,0 +1,20 @@
+{
+  "name": "andrej-karpathy-skills",
+  "version": "1.0.0",
+  "description": "Behavioral guidelines to reduce common LLM coding mistakes — think before coding, simplicity first, surgical changes, and goal-driven execution",
+  "author": {
+    "name": "forrestchang",
+    "url": "https://github.com/forrestchang/andrej-karpathy-skills"
+  },
+  "license": "MIT",
+  "keywords": [
+    "guidelines",
+    "best-practices",
+    "coding",
+    "llm",
+    "karpathy",
+    "workflow",
+    "simplicity"
+  ],
+  "skills": ["./skills/"]
+}
