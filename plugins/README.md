@@ -31,6 +31,7 @@ claude plugin marketplace add https://github.com/affaan-m/everything-claude-code
 | claude-code-plugins | `anthropics/claude-code` | Official |
 | Mixedbread-Grep (@mixedbread-ai) | `mixedbread-ai/mgrep` | Community |
 | Everything Claude Code | `affaan-m/everything-claude-code` | Community |
+| Andrej Karpathy Skills | `forrestchang/andrej-karpathy-skills` | Community |
 
 ---
 
@@ -78,6 +79,9 @@ claude plugin marketplace add https://github.com/mixedbread-ai/mgrep
 
 # Add Everything Claude Code marketplace
 claude plugin marketplace add https://github.com/affaan-m/everything-claude-code
+
+# Add Andrej Karpathy Skills marketplace
+claude plugin marketplace add https://github.com/forrestchang/andrej-karpathy-skills
 
 # Install Everything Claude Code plugin
 claude plugin install everything-claude-code@everything-claude-code
